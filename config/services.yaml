@@ -1,0 +1,27 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    NistechContaoQualliIdLogin\:
+        resource: ../src/
+        exclude:
+            - ../src/{DependencyInjection}
+            - ../src/**/*Exception.php
+
+    NistechContaoQualliIdLogin\OAuth2\Client\QualliIdBackendClientFactory:
+        arguments:
+            - '@contao.framework'
+            - '@database_connection'
+            - '@event_dispatcher'
+            - '@router'
+            - '%nistech_contao_qualliid_client.contao_qualliid_clients.qualliid_backend%'
+
+    NistechContaoQualliIdLogin\OAuth2\Client\QualliIdFrontendClientFactory:
+        arguments:
+            - '@contao.framework'
+            - '@database_connection'
+            - '@event_dispatcher'
+            - '@router'
+            - '%nistech_contao_qualliid_client.contao_qualliid_clients.qualliid_frontend%'

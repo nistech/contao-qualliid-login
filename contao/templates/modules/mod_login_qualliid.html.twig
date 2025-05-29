@@ -1,0 +1,22 @@
+{# Extend the base template #}
+{% extends "@MarkocupicContaoOAuth2Client/frontend/modules/_mod_login_oauth2_base.html.twig" %}
+
+{# Use your custom Login button #}
+{% use "@NistechContaoQualliIdLogin/components/_login_button.html.twig" %}
+
+{# Add some button styling #}
+{% do addCssResource('bundles/nistechcontaowithqualliidlogin/css/login_button.css|static') %}
+
+{# And set the variable "client_name". This is the only variable that has to be set. #}
+{% set client_name = 'qualliid_frontend' %}
+
+{# Enjoy the twig magic! #}
+{% block mod_oauth_login_frontend %}
+    {% with {client_name: client_name} %}
+        {{ parent() }}
+    {% endwith %}
+{% endblock %}
+
+{% block oauth_login_button %}
+    {{ parent() }}
+{% endblock %}

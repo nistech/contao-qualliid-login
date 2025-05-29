@@ -1,0 +1,54 @@
+{
+    "name": "nistech/contao-qualliid-login",
+    "description": "Contao Qualli.Id Login",
+    "keywords": [
+        "Contao",
+        "Qualli.life",
+        "Login",
+        "oauth2"
+    ],
+    "type": "contao-bundle",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Nistech",
+            "email": "info@nistech.de",
+            "homepage": "https://www.nistech.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nistech/contao-qualli.id-client/issues",
+        "source": "https://github.com/nistech/contao-qualli.id-client"
+    },
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^5.2",
+        "league/oauth2-client": "^2.7",
+        "league/oauth2-github": "^3.0",
+        "markocupic/contao-twig-assets": "^1.1",
+        "markocupic/contao-oauth2-client": "^1.1"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nistech\\ContaoQualliIdLogin\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": false,
+            "contao/manager-plugin": false,
+            "contao-community-alliance/composer-plugin": true
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "Nistech\\ContaoQualliIdLogin\\ContaoManager\\Plugin"
+    },
+    "scripts": {
+        "cs-fixer": "@php tools/ecs/vendor/bin/ecs check config/ contao/ src/ templates/ tests/ --config tools/ecs/config.php --fix --ansi",
+        "unit-tests": "@php tools/phpunit/vendor/bin/phpunit -c tools/phpunit/phpunit.xml.dist"
+    }
+}
