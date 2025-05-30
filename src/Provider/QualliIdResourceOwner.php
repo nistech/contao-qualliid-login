@@ -1,10 +1,10 @@
 <?php
 
-namespace League\OAuth2\Client\Provider;
+namespace Nistech\ContaoQualliIdLogin\Provider;
 
 use League\OAuth2\Client\Tool\ArrayAccessorTrait;
 
-class GithubResourceOwner implements ResourceOwnerInterface
+class QualliIdResourceOwner implements ResourceOwnerInterface
 {
     use ArrayAccessorTrait;
 
