@@ -1,6 +1,6 @@
 <?php
 
-namespace League\OAuth2\Client\Provider;
+namespace Nistech\ContaoQualliIdLogin\Provider;
 
 use League\OAuth2\Client\Provider\Exception\QualliIdIdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
