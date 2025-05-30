@@ -34,7 +34,7 @@ final class ButtonGenerator implements ButtonGeneratorInterface
     public function renderButton(string $clientName): string
     {
         return $this->twig->render(
-            '@Nistech/ContaoQualliIdLogin/components/_login_button.html.twig',
+            '@NistechContaoQualliIdLogin/components/_login_button.html.twig',
             [
                 'client_name' => $clientName,
             ]

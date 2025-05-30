@@ -1,4 +1,4 @@
-{% block oauth_login_button %}
+{% block qualliid_login_button %}
     <div class="login-btn-container">
         <button type="submit" class="login-btn" data-client="{{ client_name }}" data-delay="1000">
             {% block login_button_icon %}
@@ -85,7 +85,7 @@
                     </g>
                     </svg>
             {% endblock %}
-            {% block login_button_text %}
+            {% block qualliid_login_button_text %}
                 <span class="login-btn--btn-text">{{ 'QUALLI_ID_LOGIN.logInWithQualliId'|trans({}, 'contao_default') }}</span>
             {% endblock %}
         </button>
