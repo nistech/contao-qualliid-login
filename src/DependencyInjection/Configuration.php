@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public const ROOT_KEY = 'nistech_contao_qualliid_client';
+    public const ROOT_KEY = 'nistech_contao_qualliid_login';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {

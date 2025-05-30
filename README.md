@@ -18,11 +18,11 @@ To display the login button in the frontend, create a member login module and se
 
 ```yaml
 # config/config.yaml
-nistech_contao_qualliid_client:
+nistech_contao_qualliid_login:
     disable_contao_core_backend_login: false  # Disable original Contao backend login
     enable_csrf_token_check: true
 
-    contao_qualliid_clients:
+    contao_oauth2_clients:
         qualliid_backend:
             enable_login: true
             client_id: '%env(CONTAO_QUALLI_ID_CLIENT_ID)%'
