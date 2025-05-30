@@ -16,7 +16,7 @@ services:
             - '@database_connection'
             - '@event_dispatcher'
             - '@router'
-            - '%nistech_contao_qualliid_client.contao_qualliid_clients.qualliid_backend%'
+            - '%nistech_contao_qualliid_client.contao_oauth2_clients.qualliid_backend%'
 
     Nistech\ContaoQualliIdLogin\OAuth2\Client\QualliIdFrontendClientFactory:
         arguments:
@@ -24,4 +24,4 @@ services:
             - '@database_connection'
             - '@event_dispatcher'
             - '@router'
-            - '%nistech_contao_qualliid_client.contao_qualliid_clients.qualliid_frontend%'
+            - '%nistech_contao_qualliid_client.contao_oauth2_clients.qualliid_frontend%'
