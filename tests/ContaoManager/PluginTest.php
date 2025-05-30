@@ -12,17 +12,17 @@ declare(strict_types=1);
  * @link https://github.com/nistech/contao-qualli.id-client
  */
 
-namespace NistechContaoQualliIdLogin\Tests\ContaoManager;
+namespace Nistech\ContaoQualliIdLogin\Tests\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\DelegatingParser;
 use Contao\TestCase\ContaoTestCase;
-use NistechContaoQualliIdLogin\ContaoManager\Plugin;
-use NistechContaoQualliIdLogin\NistechContaoQualliIdLogin;
+use Nistech\ContaoQualliIdLogin\ContaoManager\Plugin;
+use Nistech\ContaoQualliIdLogin\NistechContaoQualliIdLogin;
 
 /**
- * @package NistechContaoQualliIdLogin\Tests\ContaoManager
+ * @package Nistech\ContaoQualliIdLogin\Tests\ContaoManager
  */
 class PluginTest extends ContaoTestCase
 {

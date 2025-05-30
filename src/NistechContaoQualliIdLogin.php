@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace NistechContaoQualliIdLogin;
+namespace Nistech\ContaoQualliIdLogin;
 
-use NistechContaoQualliIdLogin\DependencyInjection\NistechContaoQualliIdLoginExtension;
+use Nistech\ContaoQualliIdLogin\DependencyInjection\NistechContaoQualliIdLoginExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

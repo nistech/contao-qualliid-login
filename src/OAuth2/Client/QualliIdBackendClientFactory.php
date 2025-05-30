@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace NistechContaoQualliIdLogin\OAuth2\Client;
+namespace Nistech\ContaoQualliIdLogin\OAuth2\Client;
 
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Doctrine\DBAL\Connection;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Provider\Github;
+use League\OAuth2\Client\Provider\QualliId;
 use Markocupic\ContaoOAuth2Client\Event\CreateOAuth2ProviderEvent;
 use Markocupic\ContaoOAuth2Client\OAuth2\Client\AbstractClientFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -41,7 +41,7 @@ class QualliIdBackendClientFactory extends AbstractClientFactory
         $opt['clientId'] = $options['client_id'];
         $opt['redirectUri'] = $this->router->generate($this->getRedirectRoute(), ['_oauth2_client' => $this->getName()], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $client = new Github($opt, []);
+        $client = new QualliId($opt, []);
 
         // Allow modifications on the OAuth2 client using event listeners or event subscribers
         $event = new CreateOAuth2ProviderEvent($request, $client, $opt);

@@ -4,13 +4,13 @@ services:
         autoconfigure: true
         public: false
 
-    NistechContaoQualliIdLogin\:
+    Nistech\ContaoQualliIdLogin\:
         resource: ../src/
         exclude:
             - ../src/{DependencyInjection}
             - ../src/**/*Exception.php
 
-    NistechContaoQualliIdLogin\OAuth2\Client\QualliIdBackendClientFactory:
+    Nistech\ContaoQualliIdLogin\OAuth2\Client\QualliIdBackendClientFactory:
         arguments:
             - '@contao.framework'
             - '@database_connection'
@@ -18,7 +18,7 @@ services:
             - '@router'
             - '%nistech_contao_qualliid_client.contao_qualliid_clients.qualliid_backend%'
 
-    NistechContaoQualliIdLogin\OAuth2\Client\QualliIdFrontendClientFactory:
+    Nistech\ContaoQualliIdLogin\OAuth2\Client\QualliIdFrontendClientFactory:
         arguments:
             - '@contao.framework'
             - '@database_connection'

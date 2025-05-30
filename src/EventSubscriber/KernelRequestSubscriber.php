@@ -2,17 +2,7 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of Contao GitHub Login.
- *
- * (c) Marko Cupic 2024 <m.cupic@gmx.ch>
- * @license GPL-3.0-or-later
- * For the full copyright and license information,
- * please view the LICENSE file that was distributed with this source code.
- * @link https://github.com/nistech/contao-qualli.id-client
- */
-
-namespace NistechContaoQualliIdLogin\EventSubscriber;
+namespace Nistech\ContaoQualliIdLogin\EventSubscriber;
 
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -37,7 +27,7 @@ readonly class KernelRequestSubscriber implements EventSubscriberInterface
 
         if ($this->scopeMatcher->isBackendRequest($request)) {
             if ('contao_backend_login' === $request->attributes->get('_route')) {
-                $GLOBALS['TL_CSS'][] = 'bundles/nistechcontaowithqualliidlogin/css/login_button.css|static';
+                $GLOBALS['TL_CSS'][] = 'bundles/nistech/contaowithqualliidlogin/css/login_button.css|static';
             }
         }
     }
