@@ -5,7 +5,7 @@ namespace Nistech\ContaoQualliIdLogin\Provider;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
-use Nistech\ContaoQualliIdLogin\Provider\QualliIdIdentityProviderException;
+use Nistech\ContaoQualliIdLogin\Provider\Exception\QualliIdIdentityProviderException;
 use Psr\Http\Message\ResponseInterface;
 
 class QualliId extends AbstractProvider
