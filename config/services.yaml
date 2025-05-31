@@ -9,6 +9,10 @@ services:
         exclude:
             - ../src/{DependencyInjection}
             - ../src/**/*Exception.php
+        arguments:
+            - '@?logger'
+        tags:
+            - { name: monolog.logger, channel: contao.general }
 
     Nistech\ContaoQualliIdLogin\OAuth2\Client\QualliIdBackendClientFactory:
         arguments:
@@ -17,6 +21,9 @@ services:
             - '@event_dispatcher'
             - '@router'
             - '%nistech_contao_qualliid_login.contao_oauth2_clients.qualliid_backend%'
+            - '@?logger'
+        tags:
+            - { name: monolog.logger, channel: contao.general }
 
     Nistech\ContaoQualliIdLogin\OAuth2\Client\QualliIdFrontendClientFactory:
         arguments:
@@ -25,3 +32,6 @@ services:
             - '@event_dispatcher'
             - '@router'
             - '%nistech_contao_qualliid_login.contao_oauth2_clients.qualliid_frontend%'
+            - '@?logger'
+        tags:
+            - { name: monolog.logger, channel: contao.general }

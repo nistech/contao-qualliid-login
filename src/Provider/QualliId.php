@@ -57,6 +57,9 @@ class QualliId extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
+        $logger = System::getContainer()->get('monolog.logger.contao.general');
+        $logger->info('get resource owner URL');
+
         if ($this->domain === 'https://github.com') {
             return $this->apiDomain . '/user';
         }
@@ -65,6 +68,9 @@ class QualliId extends AbstractProvider
 
     protected function fetchResourceOwnerDetails(AccessToken $token)
     {
+        $logger = System::getContainer()->get('monolog.logger.contao.general');
+        $logger->info('fetching resource owner details');
+                    
         $response = parent::fetchResourceOwnerDetails($token);
 
         if (empty($response['email'])) {
@@ -114,9 +120,13 @@ class QualliId extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
+        $logger = System::getContainer()->get('monolog.logger.contao.general');
+
         if ($response->getStatusCode() >= 400) {
+            $logger->error('Response status code is ' . $response->getStatusCode());
             throw QualliIdIdentityProviderException::clientException($response, $data);
         } elseif (isset($data['error'])) {
+            $logger->error('Response error ' . $data['error']);
             throw QualliIdIdentityProviderException::oauthException($response, $data);
         }
     }
