@@ -70,9 +70,9 @@ class QualliId extends AbstractProvider
     protected function fetchResourceOwnerDetails(AccessToken $token)
     {
         $logger = System::getContainer()->get('monolog.logger.contao.general');
-        $logger->info('fetching resource owner details');
                     
         $response = parent::fetchResourceOwnerDetails($token);
+        $logger->info('fetching resource owner details: '.print_r($response, true));
 
         if (empty($response['email'])) {
             $url = $this->getResourceOwnerDetailsUrl($token) . '/emails';
