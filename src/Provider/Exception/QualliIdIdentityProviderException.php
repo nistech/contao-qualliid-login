@@ -2,7 +2,7 @@
 
 namespace Nistech\ContaoQualliIdLogin\Provider\Exception;
 
-use League\OAuth2\Client\Provider\IdentityProviderException;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Psr\Http\Message\ResponseInterface;
 
 class QualliIdIdentityProviderException extends IdentityProviderException
