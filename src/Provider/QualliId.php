@@ -46,7 +46,7 @@ class QualliId extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->domain . '/connect/token ';
+        return $this->domain . '/connect/token';
     }
 
     /**
