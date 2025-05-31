@@ -7,10 +7,23 @@ use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Nistech\ContaoQualliIdLogin\Provider\Exception\QualliIdIdentityProviderException;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 class QualliId extends AbstractProvider
 {
     use BearerAuthorizationTrait;
+
+    // Parameter must match Psr\Log\LoggerInterface $<camelCased channel name> + Logger
+    public function __construct(
+        private readonly LoggerInterface $contaoGeneralLogger,
+        private readonly LoggerInterface $contaoErrorLogger,
+    ) {
+        $this->logGeneral = $contaoGeneralLogger;
+        $this->logError = $contaoErrorLogger;
+    }
+
+    public $logGeneral;
+    public $logError;
 
     /**
      * Domain
@@ -57,8 +70,7 @@ class QualliId extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
-        $logger->info('get resource owner URL');
+        $this->logGeneral->info('get resource owner URL');
 
         if ($this->domain === 'https://github.com') {
             return $this->apiDomain . '/user';
@@ -68,8 +80,7 @@ class QualliId extends AbstractProvider
 
     protected function fetchResourceOwnerDetails(AccessToken $token)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
-        $logger->info('fetching resource owner details');
+        $this->logGeneral->info('fetching resource owner details');
                     
         $response = parent::fetchResourceOwnerDetails($token);
 
@@ -120,13 +131,11 @@ class QualliId extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
-
         if ($response->getStatusCode() >= 400) {
-            $logger->error('Response status code is ' . $response->getStatusCode());
+            $this->logGeneral->error('Response status code is ' . $response->getStatusCode());
             throw QualliIdIdentityProviderException::clientException($response, $data);
         } elseif (isset($data['error'])) {
-            $logger->error('Response error ' . $data['error']);
+            $this->logGeneral->error('Response error ' . $data['error']);
             throw QualliIdIdentityProviderException::oauthException($response, $data);
         }
     }
