@@ -92,7 +92,10 @@ class QualliId extends AbstractProvider
     {
         return [
             'offline_access',
-            'openid'
+            'openid',
+            'Qualli.UserType.User',
+            'Qualli.UserType.Employee',
+            'Qualli.UserType.Member'
         ];
     }
 
