@@ -17,14 +17,14 @@ class QualliId extends AbstractProvider
      *
      * @var string
      */
-    public $domain = 'https://account.nistech.net';
+    public $domain = 'https://devaccount.nistech.net';
 
     /**
      * Api domain
      *
      * @var string
      */
-    public $apiDomain = 'https://account.nistech.net';
+    public $apiDomain = 'https://devaccount.nistech.net';
 
     /**
      * Get authorization url to begin OAuth flow
