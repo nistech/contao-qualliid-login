@@ -7,7 +7,7 @@ namespace Nistech\ContaoQualliIdLogin\OAuth2\Client;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Doctrine\DBAL\Connection;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Provider\QualliId;
+use Nistech\ContaoQualliIdLogin\Provider\QualliId;
 use Markocupic\ContaoOAuth2Client\Event\CreateOAuth2ProviderEvent;
 use Markocupic\ContaoOAuth2Client\OAuth2\Client\AbstractClientFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

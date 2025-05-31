@@ -16,7 +16,7 @@ class QualliId extends AbstractProvider
      *
      * @var string
      */
-    public $domain = 'https://nistech.net';
+    public $domain = 'https://account.nistech.net';
 
     /**
      * Api domain
@@ -32,7 +32,7 @@ class QualliId extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->domain . '/login/oauth/authorize';
+        return $this->domain . '/connect/authorize';
     }
 
     /**
@@ -44,7 +44,7 @@ class QualliId extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->domain . '/login/oauth/access_token';
+        return $this->domain . '/connect/token ';
     }
 
     /**
@@ -90,7 +90,9 @@ class QualliId extends AbstractProvider
     protected function getDefaultScopes()
     {
         return [
-            'user:email',
+            'offline_access',
+            'openid',
+            'Qualli.CustomerServer',
         ];
     }
 
