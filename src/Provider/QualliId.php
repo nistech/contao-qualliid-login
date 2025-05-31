@@ -3,9 +3,9 @@
 namespace Nistech\ContaoQualliIdLogin\Provider;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Provider\Exception\QualliIdIdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
+use Nistech\ContaoQualliIdLogin\Provider\QualliIdIdentityProviderException;
 use Psr\Http\Message\ResponseInterface;
 
 class QualliId extends AbstractProvider
@@ -92,9 +92,13 @@ class QualliId extends AbstractProvider
     {
         return [
             'offline_access',
-            'openid',
-            'Qualli.CustomerServer',
+            'openid'
         ];
+    }
+
+    protected function getScopeSeparator()
+    {
+        return ' ';
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 
-namespace League\OAuth2\Client\Provider\Exception;
+namespace Nistech\ContaoQualliIdLogin\Provider;
 
+use League\OAuth2\Client\Provider\IdentityProviderException;
 use Psr\Http\Message\ResponseInterface;
 
 class QualliIdIdentityProviderException extends IdentityProviderException
