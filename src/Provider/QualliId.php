@@ -63,10 +63,9 @@ class QualliId extends AbstractProvider
 
     protected function fetchResourceOwnerDetails(AccessToken $token)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
+        //$logger = System::getContainer()->get('monolog.logger.contao.general');
                     
         $response = parent::fetchResourceOwnerDetails($token);
-        $logger->info('fetching resource owner details: '.print_r($response, true));
 
         if (empty($response['UserName'])) {
             $url = $this->getResourceOwnerDetailsUrl($token);
@@ -115,7 +114,7 @@ class QualliId extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
+        $logger = System::getContainer()->get('monolog.logger.contao.error');
 
         if ($response->getStatusCode() >= 400) {
             $logger->error('Response status code is ' . $response->getStatusCode());

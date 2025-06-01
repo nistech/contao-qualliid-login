@@ -28,13 +28,16 @@ class QualliIdTokenHandler implements TokenHandlerInterface
      */
     private string $contaoIdentifierFieldName = 'username';
     private LoggerInterface $logger;
+    private LoggerInterface $generalLogger;
 
     public function __construct(
         protected readonly ContaoFramework $framework,
         protected readonly Connection $connection,
         private readonly LoggerInterface $contaoErrorLogger,
+        private readonly LoggerInterface $contaoGeneralLogger,
     ) {
         $this->logger=$contaoErrorLogger;
+        $this->generalLogger=$contaoGeneralLogger;
     }
 
     /**
@@ -69,13 +72,13 @@ class QualliIdTokenHandler implements TokenHandlerInterface
             return null;
         }
 
+        $this->generalLogger->info("Qualli.Id: user badge created. Claims: ".print_r($claims, true));
+
         return new UserBadge($user->getUserIdentifier());
     }
 
     protected function getContaoUserFromClaims(array $claims, string $table, string $userClass): User|null
     {
-        $this->logger->error("getContaoUserFromClaims: ".print_r($claims, true));
-
         if (empty($claims[$this->claim])) {
             $this->logger->error("Claim ".$this->claim." is empty. Claims: ".print_r($claims, true));
             return null;
