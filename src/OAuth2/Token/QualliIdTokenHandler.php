@@ -35,6 +35,7 @@ class QualliIdTokenHandler implements TokenHandlerInterface
         private readonly LoggerInterface $contaoErrorLogger,
     ) {
         $this->logger=$contaoErrorLogger;
+        $this->logger->error("QualliIdTokenHandler constructor passed");
     }
 
     /**
@@ -45,7 +46,7 @@ class QualliIdTokenHandler implements TokenHandlerInterface
      */
     public function supports(): array
     {
-        return ['default'];
+        return ['qualliid_backend', 'qualliid_frontend'];
     }
 
     public function getUserBadgeFromResourceOwner(ResourceOwnerInterface $resourceOwner, string $firewall): UserBadge|null
