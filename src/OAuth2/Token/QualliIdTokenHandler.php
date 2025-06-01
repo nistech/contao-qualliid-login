@@ -21,12 +21,12 @@ class QualliIdTokenHandler implements TokenHandlerInterface
     /**
      * The claim where the user identifier is stored.
      */
-    private string $claim = 'Email';
+    private string $claim = 'UserName';
 
     /**
      * tl_user.email or tl_member.email.
      */
-    private string $contaoIdentifierFieldName = 'email';
+    private string $contaoIdentifierFieldName = 'username';
     private LoggerInterface $logger;
 
     public function __construct(
@@ -35,7 +35,6 @@ class QualliIdTokenHandler implements TokenHandlerInterface
         private readonly LoggerInterface $contaoErrorLogger,
     ) {
         $this->logger=$contaoErrorLogger;
-        $this->logger->error("QualliIdTokenHandler constructor passed");
     }
 
     /**
@@ -51,8 +50,6 @@ class QualliIdTokenHandler implements TokenHandlerInterface
 
     public function getUserBadgeFromResourceOwner(ResourceOwnerInterface $resourceOwner, string $firewall): UserBadge|null
     {
-        $this->logger->error("getUserBadgeFromResourceOwner: ".print_r($resourceOwner, true));
-
         $claims = $resourceOwner->toArray();
 
         [$userClass, $table] = match ($firewall) {
@@ -63,7 +60,12 @@ class QualliIdTokenHandler implements TokenHandlerInterface
         $user = $this->getContaoUserFromClaims($claims, $table, $userClass);
 
         // Test if login is allowed
-        if (empty($user) || !$this->canLogin($user)) {
+        if (empty($user)) {
+            $this->logger->error("Contao user not found. Claims: ".print_r($claims, true));
+            return null;
+        }
+        if (!$this->canLogin($user)) {
+            $this->logger->error("Contao user cannot login. User: ".print_r($user, true));
             return null;
         }
 
@@ -75,12 +77,14 @@ class QualliIdTokenHandler implements TokenHandlerInterface
         $this->logger->error("getContaoUserFromClaims: ".print_r($claims, true));
 
         if (empty($claims[$this->claim])) {
+            $this->logger->error("Claim ".$this->claim." is empty. Claims: ".print_r($claims, true));
             return null;
         }
 
         $identifierClaim = $claims[$this->claim];
 
         if (!$this->getValidator()->isEmail($identifierClaim)) {
+            $this->logger->error("Validation failed on isEmail for identifier claim ".$identifierClaim.". Claims: ".print_r($claims, true));
             return null;
         }
 
@@ -94,6 +98,7 @@ class QualliIdTokenHandler implements TokenHandlerInterface
         $userIdentifier = $qb->fetchOne();
 
         if (!$userIdentifier) {
+            $this->logger->error("userIdentifier not found in database. Identifier claim ".$identifierClaim.". Claims: ".print_r($claims, true));
             return null;
         }
 
