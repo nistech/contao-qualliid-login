@@ -3,6 +3,7 @@
 namespace Nistech\ContaoQualliIdLogin\Provider;
 
 use League\OAuth2\Client\Tool\ArrayAccessorTrait;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class QualliIdResourceOwner implements ResourceOwnerInterface
 {
