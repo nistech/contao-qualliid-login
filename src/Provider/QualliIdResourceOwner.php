@@ -39,7 +39,7 @@ class QualliIdResourceOwner implements ResourceOwnerInterface
      */
     public function getId()
     {
-        return $this->getValueByKey($this->response, 'id');
+        return $this->getValueByKey($this->response, 'sub');
     }
 
     /**
@@ -49,7 +49,7 @@ class QualliIdResourceOwner implements ResourceOwnerInterface
      */
     public function getEmail()
     {
-        return $this->getValueByKey($this->response, 'email');
+        return $this->getValueByKey($this->response, 'Email');
     }
 
     /**
@@ -69,7 +69,7 @@ class QualliIdResourceOwner implements ResourceOwnerInterface
      */
     public function getNickname()
     {
-        return $this->getValueByKey($this->response, 'login');
+        return $this->getValueByKey($this->response, 'UserName');
     }
 
     /**

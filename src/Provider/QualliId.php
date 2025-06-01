@@ -68,14 +68,14 @@ class QualliId extends AbstractProvider
         $response = parent::fetchResourceOwnerDetails($token);
         $logger->info('fetching resource owner details: '.print_r($response, true));
 
-        if (empty($response['email'])) {
-            $url = $this->getResourceOwnerDetailsUrl($token) . '/emails';
+        if (empty($response['UserName'])) {
+            $url = $this->getResourceOwnerDetailsUrl($token);
 
             $request = $this->getAuthenticatedRequest(self::METHOD_GET, $url, $token);
 
             $responseEmail = $this->getParsedResponse($request);
 
-            $response['email'] = isset($responseEmail[0]['email']) ? $responseEmail[0]['email'] : null;
+            $response['UserName'] = isset($responseEmail[0]['UserName']) ? $responseEmail[0]['UserName'] : null;
         }
 
         return $response;
