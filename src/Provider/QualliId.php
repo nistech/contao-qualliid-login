@@ -58,13 +58,7 @@ class QualliId extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        $logger = System::getContainer()->get('monolog.logger.contao.general');
-        $logger->info('get resource owner URL');
-
-        if ($this->domain === 'https://github.com') {
-            return $this->apiDomain . '/user';
-        }
-        return $this->domain . '/api/v3/user';
+        return $this->domain . '/connect/userinfo';
     }
 
     protected function fetchResourceOwnerDetails(AccessToken $token)
