@@ -25,3 +25,8 @@ services:
             - '@event_dispatcher'
             - '@router'
             - '%nistech_contao_qualliid_login.contao_oauth2_clients.qualliid_frontend%'
+
+    Nistech\ContaoQualliIdLogin\OAuth2\Token\QualliIdTokenHandler:
+        arguments:
+            - '@contao.framework'
+            - '@database_connection'
