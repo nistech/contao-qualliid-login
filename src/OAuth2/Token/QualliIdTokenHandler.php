@@ -14,6 +14,7 @@ use Doctrine\DBAL\Connection;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Markocupic\ContaoOAuth2Client\OAuth2\Token\TokenHandlerInterface;
+use Psr\Log\LoggerInterface;
 
 class QualliIdTokenHandler implements TokenHandlerInterface
 {
@@ -26,11 +27,14 @@ class QualliIdTokenHandler implements TokenHandlerInterface
      * tl_user.email or tl_member.email.
      */
     private string $contaoIdentifierFieldName = 'email';
+    private LoggerInterface $logger;
 
     public function __construct(
         protected readonly ContaoFramework $framework,
         protected readonly Connection $connection,
+        private readonly LoggerInterface $contaoErrorLogger,
     ) {
+        $this->logger=$contaoErrorLogger;
     }
 
     /**
@@ -46,6 +50,8 @@ class QualliIdTokenHandler implements TokenHandlerInterface
 
     public function getUserBadgeFromResourceOwner(ResourceOwnerInterface $resourceOwner, string $firewall): UserBadge|null
     {
+        $this->logger->error("getUserBadgeFromResourceOwner: ".print_r($resourceOwner, true));
+
         $claims = $resourceOwner->toArray();
 
         [$userClass, $table] = match ($firewall) {
@@ -65,6 +71,8 @@ class QualliIdTokenHandler implements TokenHandlerInterface
 
     protected function getContaoUserFromClaims(array $claims, string $table, string $userClass): User|null
     {
+        $this->logger->error("getContaoUserFromClaims: ".print_r($claims, true));
+
         if (empty($claims[$this->claim])) {
             return null;
         }
