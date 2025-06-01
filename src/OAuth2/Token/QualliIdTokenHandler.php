@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Markocupic\ContaoOAuth2Client\OAuth2\Token;
+namespace Nistech\ContaoQualliIdLogin\OAuth2\Token;
 
 use Contao\BackendUser;
 use Contao\CoreBundle\Framework\Adapter;
